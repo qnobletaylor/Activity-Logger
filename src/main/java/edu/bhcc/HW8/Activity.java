@@ -1,14 +1,14 @@
 package edu.bhcc.HW8;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 /**
  * Record class for use by JPA database.
  * Has attributes for id (primary key), route (name of place or route for the activity), miles (distance covered in
  * activity), and date (date the activity was done).
  */
+@Entity
+@Table(name = "activity")
 public class Activity {
 
   @Id

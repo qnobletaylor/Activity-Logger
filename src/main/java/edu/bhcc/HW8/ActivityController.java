@@ -41,6 +41,9 @@ public class ActivityController {
     } else {
       model.addAttribute("toast", "No activity with ID: " + id + ".");
     }
+
+    List<Activity> activityList = getAllActivities();
+    model.addAttribute("activity_list", activityList);
     return "index";
   }
 

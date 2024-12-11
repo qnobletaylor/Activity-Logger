@@ -15,6 +15,9 @@ public class ActivityController {
     this.repo = repo;
   }
 
+  /**
+   * Maps to endpoint '/' to index.html
+   */
   @GetMapping("/")
   public String index(Model model) {
     List<Activity> activityList = getAllActivities();
@@ -28,6 +31,7 @@ public class ActivityController {
     repo.save(activity);
     List<Activity> activityList = getAllActivities();
     model.addAttribute("toast", "New activity added: " + route + "!");
+    model.addAttribute("add", true);
     model.addAttribute("activity_list", activityList);
     return "index";
   }
@@ -36,10 +40,26 @@ public class ActivityController {
   public String deleteActivity(Integer id, Model model) {
     Activity activity = repo.findById(id);
     if (activity != null) {
-      model.addAttribute("toast", "Deleted activity: " + activity.getDate() + ".");
+      model.addAttribute("toast", "Deleted activity: " + activity.getRoute() + " | " + activity.getDate());
+      model.addAttribute("delete", true);
       repo.delete(activity);
     } else {
-      model.addAttribute("toast", "No activity with ID: " + id + ".");
+      model.addAttribute("toast", "Could not find activity with ID: " + id + ".");
+      model.addAttribute("error", true);
+    }
+
+    List<Activity> activityList = getAllActivities();
+    model.addAttribute("activity_list", activityList);
+    return "index";
+  }
+
+  @GetMapping("/edit_activity")
+  public String editActivity(Integer id, Model model) {
+    Activity activity = repo.findById(id);
+    if (activity != null) {
+      model.addAttribute("edit", activity);
+    } else {
+      model.addAttribute("toast", "Could not find activity with ID: " + id + ".");
     }
 
     List<Activity> activityList = getAllActivities();

@@ -67,6 +67,25 @@ public class ActivityController {
     return "index";
   }
 
+  @GetMapping("/save_activity")
+  public String saveActivity(Integer id, String route, Double miles, String date, Model model) {
+    Activity activity = repo.findById(id);
+    String oldRoute = activity.getRoute();
+    if (activity != null) {
+      activity.setRoute(route);
+      activity.setMiles(miles);
+      activity.setDate(date);
+      repo.save(activity);
+      model.addAttribute("toast", "Updated Activity: " + oldRoute + " --> " + route + "!");
+    } else {
+      model.addAttribute("toast", "Could not find activity with ID: " + id + ".");
+    }
+
+    List<Activity> activityList = getAllActivities();
+    model.addAttribute("activity_list", activityList);
+    return "index";
+  }
+
   private List<Activity> getAllActivities() {
     Iterable<Activity> activityIter = repo.findAll();
     List<Activity> activityList = new ArrayList<Activity>();

@@ -75,7 +75,7 @@ public class Activity {
   @Override
   public String toString() {
     return String.format(
-        "Activity [\n\tid:%d,\n\troute:'%s',\n\tmiles:%f,\n\tdate:'%s'\n]",
+        "[\n\tid:%d,\n\troute:'%s',\n\tmiles:%f,\n\tdate:'%s'\n]",
         id, route, miles, date
     );
   }

@@ -18,13 +18,13 @@
             <span class="navbar-brand m-2 h1"><i class="me-2 bi bi-person-walking"></i>Activities Log</span>
         </div>
     </nav>
-    
+
     <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${toast}">
         <i class="bi bi-check-circle" th:if="${add}"></i>
         <i class="me-2 bi bi-x-circle" th:if="${delete}"></i>
         <i class="bi bi-arrow-counterclockwise" th:if="${update}"></i>
         <i class="me-2 bi bi-bug" th:if="${error}"></i>
-        <span th:text="${toast}"/>
+        <span th:text="${toast}"></span>
         <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
     </div>
 
@@ -46,7 +46,7 @@
     </form>
 
     <div class="mt-2 mb-2">
-        <b>You currently have <span th:text="${#lists.size(activity_list)}"/> activities.</b>
+        <b>You currently have <span th:text="${#lists.size(activity_list)}"></span> activities.</b>
     </div>
 
 

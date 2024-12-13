@@ -28,6 +28,9 @@ public class ActivityController {
   public String index(Model model) {
     List<Activity> activityList = getAllActivities();
     model.addAttribute("activity_list", activityList);
+
+    double totalMiles = getTotalMiles(activityList);
+    model.addAttribute("total_miles", totalMiles);
     return "index";
   }
 
@@ -37,11 +40,15 @@ public class ActivityController {
   @GetMapping("/add_activity")
   public String addActivity(String route, Double miles, String date, Model model) {
     Activity activity = new Activity(route, miles, date);
-    repo.save(activity);
-    List<Activity> activityList = getAllActivities();
+    repo.save(activity); // Saves new record
+
     model.addAttribute("toast", "New activity added: " + route + "!");
     model.addAttribute("add", true);
-    model.addAttribute("activity_list", activityList);
+
+    List<Activity> activityList = getAllActivities();
+    model.addAttribute("activity_list", activityList); // add activities to template
+    double totalMiles = getTotalMiles(activityList);
+    model.addAttribute("total_miles", totalMiles); // gets total miles accumulated
     return "index";
   }
 
@@ -64,6 +71,8 @@ public class ActivityController {
 
     List<Activity> activityList = getAllActivities();
     model.addAttribute("activity_list", activityList);
+    double totalMiles = getTotalMiles(activityList);
+    model.addAttribute("total_miles", totalMiles);
     return "index";
   }
 
@@ -82,7 +91,7 @@ public class ActivityController {
 
       repo.save(activity);
 
-      model.addAttribute("toast", "Updated Activity:\n " + oldActivity + " --> " + activity);
+      model.addAttribute("toast", "Updated Activity!");
       model.addAttribute("update", true);
     } else {
       model.addAttribute("toast", "Could not find activity with ID: " + id + ".");
@@ -91,6 +100,8 @@ public class ActivityController {
 
     List<Activity> activityList = getAllActivities();
     model.addAttribute("activity_list", activityList);
+    double totalMiles = getTotalMiles(activityList);
+    model.addAttribute("total_miles", totalMiles);
     return "index";
   }
 
@@ -104,5 +115,14 @@ public class ActivityController {
     activityIter.forEach(activity -> activityList.add(activity)); // Transfer each record to arraylist
 
     return activityList;
+  }
+
+  private double getTotalMiles(List<Activity> activityList) {
+    double totalMiles = 0;
+    for (Activity activity : activityList) {
+      totalMiles += activity.getMiles();
+    }
+
+    return totalMiles;
   }
 }

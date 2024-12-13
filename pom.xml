@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>edu.bhcc</groupId>
-	<artifactId>HW8</artifactId>
+	<artifactId>ActivityLogger</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>HW8</name>
 	<description>Final advJava assignment, activity tracking webapp</description>

@@ -23,7 +23,8 @@
         </div>
     </nav>
 
-    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${toast}">
+    <!--Alert Banner-->
+    <div class="alert alert-info alert-dismissible fade show" data-timeout="10000" role="alert" th:if="${toast}">
         <i class="bi bi-check-circle" th:if="${add}"></i>
         <i class="me-2 bi bi-x-circle" th:if="${delete}"></i>
         <i class="bi bi-arrow-counterclockwise" th:if="${update}"></i>
@@ -32,6 +33,7 @@
         <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
     </div>
 
+    <!--Form-->
     <form METHOD="GET" action="add_activity" class="mb-3">
         <div class="row">
             <div class="col-3">
@@ -54,8 +56,7 @@
             <span th:text="${total_miles}"></span> total miles.</b>
     </div>
 
-
-    <div class="w-25"></div>
+    <!--Table-->
     <table class="table table-striped w-75">
         <tr>
             <th>Route</th>
@@ -89,7 +90,7 @@
                     Delete</a>
             </td>
 
-            <!-- Modal -->
+            <!--Modal-->
             <div aria-hidden="false" aria-labelledby="activityModalLabel" class="modal fade" tabindex="-1"
                  th:id="|activityModal${activity.getId()}|">
                 <div class="modal-dialog modal-dialog-centered">
@@ -132,8 +133,20 @@
 
         </tr>
     </table>
-
-
 </div>
+
+<!--For dismissing alert banner-->
+<script type="text/javascript">
+    let alert_list = document.querySelectorAll('.alert');
+    alert_list.forEach(function (alert) {
+        new bootstrap.Alert(alert);
+
+        let alert_timeout = alert.getAttribute('data-timeout');
+        setTimeout(() => {
+            bootstrap.Alert.getInstance(alert).close();
+        }, +alert_timeout);
+    });
+</script>
+
 </body>
 </html>

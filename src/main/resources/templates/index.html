@@ -42,7 +42,7 @@
                 <input class="form-control" name="route" placeholder="Route" required type="text">
             </div>
             <div class="col-3">
-                <input class="form-control" name="miles" placeholder="Miles" required type="number">
+                <input class="form-control" name="miles" placeholder="Miles" required step="0.01" type="number">
             </div>
             <div class="col-2">
                 <input class="form-control" name="date" required type="date">
@@ -115,7 +115,7 @@
                                     <div class="col-5">
                                         <label class="col-form-label">Miles:</label>
                                         <input class="form-control" name="miles"
-                                               th:value="${activity.getMiles()}" type="number">
+                                               step="0.01" th:value="${activity.getMiles()}" type="number">
                                     </div>
                                     <div class="col-5">
                                         <label class="col-form-label">Date:</label>

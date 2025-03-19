@@ -122,7 +122,7 @@ public class ActivityController {
     for (Activity activity : activityList) {
       totalMiles += activity.getMiles();
     }
-
-    return totalMiles;
+    
+    return (double) Math.round(totalMiles * 100) / 100;
   }
 }

@@ -16,15 +16,17 @@
     <link href="/person-walking.svg" rel="apple-touch-icon">
 </head>
 <body>
-<div class="container">
-    <nav class="navbar bg-primary mb-3 mt-3 rounded-2" data-bs-theme="dark">
+
+<div class="d-flex flex-column align-items-center">
+    <nav class="navbar bg-primary mb-3 mt-3 w-75 pr-3 rounded-2" data-bs-theme="dark">
         <div>
             <span class="navbar-brand m-2 h1"><i class="me-2 bi bi-person-walking"></i>Activities Log</span>
         </div>
     </nav>
 
     <!--Alert Banner-->
-    <div class="alert alert-info alert-dismissible fade show" data-timeout="10000" role="alert" th:if="${toast}">
+    <div class="alert w-75 alert-info alert-dismissible fade show" data-timeout="10000" role="alert"
+         th:if="${toast}">
         <i class="bi bi-check-circle" th:if="${add}"></i>
         <i class="me-2 bi bi-x-circle" th:if="${delete}"></i>
         <i class="bi bi-arrow-counterclockwise" th:if="${update}"></i>
@@ -34,7 +36,7 @@
     </div>
 
     <!--Form-->
-    <form METHOD="GET" action="add_activity" class="mb-3">
+    <form METHOD="GET" action="add_activity" class="mb-3 w-75">
         <div class="row">
             <div class="col-3">
                 <input class="form-control" name="route" placeholder="Route" required type="text">
@@ -51,7 +53,7 @@
         </div>
     </form>
 
-    <div class="mt-2 mb-2">
+    <div class="mt-2 mb-2 w-75">
         <b>You currently have <span th:text="${#lists.size(activity_list)}"></span> activities and
             <span th:text="${total_miles}"></span> total miles.</b>
     </div>
@@ -74,7 +76,8 @@
                    id="activityModalBtn"
                    style="--bs-icon-link-transform: translate3d(0, -.200rem, 0);"
                    th:data-bs-target="|#activityModal${activity.getId()}|">Edit
-                    <svg class="bi bi-pen" fill="currentColor" height="16" viewBox="0 0 17 17" width="16"
+                    <svg class="bi bi-pen"
+                         fill="currentColor" height="16" viewBox="0 0 17 17" width="16"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
                     </svg>

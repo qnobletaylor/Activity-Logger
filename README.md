@@ -1,5 +1,7 @@
 # Activity Logging Application
 
+![AppDemo](https://i.imgur.com/P2G4iZE.gif)
+
 ### Overview
 
 This web app allows for a user to add activities to a log which get stored in a memory database.
